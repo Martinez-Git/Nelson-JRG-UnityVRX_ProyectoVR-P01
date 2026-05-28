@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI textoContador;
     public TextMeshProUGUI textoCuenta;
+    public bool tieneLlave = false;
 
     public Transform jugador;
     public GameObject llave;
@@ -47,8 +48,8 @@ public class GameManager : MonoBehaviour
 
         textoCuenta.text = "¡LLAVE OBTENIDA!";
 
-        Vector3 posicionFrente = jugador.position + jugador.forward * 2f;
-        posicionFrente.y += 1.5f;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Vector3 posicionFrente = ray.origin + ray.direction * 10f;
 
         llave.transform.position = posicionFrente;
         llave.SetActive(true);
